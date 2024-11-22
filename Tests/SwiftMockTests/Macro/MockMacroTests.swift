@@ -11,7 +11,7 @@ private let testMacros: [String: Macro.Type] = [
 #endif
 
 final class MockMacroTests: XCTestCase {
-	func testEmptyProtocol() {
+	func testEmptyProtocol() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -46,7 +46,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testInternalProtocol() {
+	func testInternalProtocol() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -79,7 +79,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testFunctionWithoutArgumentsAndReturnType() {
+	func testFunctionWithoutArgumentsAndReturnType() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -136,7 +136,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testGetProperty() {
+	func testGetProperty() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -192,7 +192,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testGetSetProperty() {
+	func testGetSetProperty() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -432,7 +432,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 
-	func testFunctionWithoutArguments() {
+    func testFunctionWithoutArguments() throws {
 	#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -489,7 +489,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testFunctionWitOneArgument() {
+	func testFunctionWitOneArgument() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -546,7 +546,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testFunctionWithTwoArgument() {
+	func testFunctionWithTwoArgument() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -605,7 +605,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testFunctionThatThrows() {
+	func testFunctionThatThrows() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -664,7 +664,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testAsyncFunction() {
+	func testAsyncFunction() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""
@@ -723,7 +723,7 @@ final class MockMacroTests: XCTestCase {
 		#endif
 	}
 	
-	func testAsyncThrowsFunction() {
+	func testAsyncThrowsFunction() throws {
 		#if canImport(SwiftMockMacros)
 		assertMacroExpansion(
 			"""

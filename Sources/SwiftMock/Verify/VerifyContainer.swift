@@ -11,15 +11,18 @@ public class VerifyContainer: CallContainer {
 	var calls: [Any] = []
 	var functions: [String] = []
 	var isVerified: [Bool] = []
-	
+    private let queue = DispatchQueue(label: "VerifyContainerQueue")
+
 	public init() { }
 	
 	public func append<T>(mock: AnyObject, call: MethodCall<T>, function: String) {
-		calls.append(call)
-		functions.append(function)
-		isVerified.append(false)
-		
-		InOrderContainer.append(mock: mock, call: call, function: function)
+        queue.sync { [weak self] in
+            self?.calls.append(call)
+            self?.functions.append(function)
+            self?.isVerified.append(false)
+
+            InOrderContainer.append(mock: mock, call: call, function: function)
+        }
 	}
 	
 	public func verify<T>(
