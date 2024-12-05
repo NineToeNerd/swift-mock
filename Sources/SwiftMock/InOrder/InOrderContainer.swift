@@ -11,13 +11,16 @@ class InOrderContainer: CallContainer {
 	private static var mocks: [AnyObject] = []
 	private static var calls: [Any] = []
 	private static var functions: [String] = []
+	private static let queue = DispatchQueue(label: "InOrderContainerQueue")
 	
 	var startIndex = 0
 	
 	init() { }
+
+	deinit { queue = nil }
 	
 	static func append<T>(mock: AnyObject, call: MethodCall<T>, function: String) {
-	        DispatchQueue(label: "InOrderContainerQueue").sync {
+	        queue.sync {
 		        Self.mocks.append(mock)
 		        Self.calls.append(call)
 		        Self.functions.append(function)
