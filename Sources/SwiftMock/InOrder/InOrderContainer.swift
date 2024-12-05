@@ -11,7 +11,7 @@ class InOrderContainer: CallContainer {
 	private static var mocks: [AnyObject] = []
 	private static var calls: [Any] = []
 	private static var functions: [String] = []
-	private let queue = DispatchQueue(label: "VerifyContainerQueue")
+	private static let queue = DispatchQueue(label: "VerifyContainerQueue")
 	
 	var startIndex = 0
 	
@@ -29,6 +29,7 @@ class InOrderContainer: CallContainer {
 		mocks = []
 		calls = []
 		functions = []
+		queue = nil
 	}
 	
 	func verify<T>(
