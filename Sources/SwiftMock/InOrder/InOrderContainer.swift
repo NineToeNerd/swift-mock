@@ -17,10 +17,10 @@ class InOrderContainer: CallContainer {
 	init() { }
 	
 	static func append<T>(mock: AnyObject, call: MethodCall<T>, function: String) {
-	        DispatchQueue(label: "VerifyContainerQueue").sync { [weak self] in
-		        self?.mocks.append(mock)
-		        self?.calls.append(call)
-		        self?.functions.append(function)
+	        DispatchQueue(label: "VerifyContainerQueue").sync {
+		        Self.mocks.append(mock)
+		        Self.calls.append(call)
+		        Self.functions.append(function)
 	        }
 	}
 	
