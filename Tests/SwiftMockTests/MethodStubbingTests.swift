@@ -177,7 +177,29 @@ final class MethodStubbingTests: XCTestCase {
 		}
 		XCTAssertNil(catchedError)
 	}
-	
+
+    func testConcurrentMockAccess() throws {
+        let mock = SimpleProtocolMock()
+        let expectation = -1
+        when(mock.$call()).thenReturn(expectation)
+
+        let xcTestExpectation = XCTestExpectation()
+        xcTestExpectation.expectedFulfillmentCount = 400
+        DispatchQueue.concurrentPerform(iterations: 200) { number in
+            let actual = mock.call()
+            XCTAssertEqual(expectation, actual)
+            xcTestExpectation.fulfill()
+        }
+
+        DispatchQueue.concurrentPerform(iterations: 200) { number in
+            let actual = mock.call()
+            XCTAssertEqual(expectation, actual)
+            xcTestExpectation.fulfill()
+        }
+
+        wait(for: [xcTestExpectation])
+    }
+
 	func testGenericWithOneParameter() {
 		let mock = GenericMethodProtocolMock()
 		
