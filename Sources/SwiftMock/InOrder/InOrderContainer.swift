@@ -16,8 +16,6 @@ class InOrderContainer: CallContainer {
 	var startIndex = 0
 	
 	init() { }
-
-	deinit { queue = nil }
 	
 	static func append<T>(mock: AnyObject, call: MethodCall<T>, function: String) {
 	        queue.sync {
