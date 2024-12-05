@@ -17,7 +17,7 @@ class InOrderContainer: CallContainer {
 	init() { }
 	
 	static func append<T>(mock: AnyObject, call: MethodCall<T>, function: String) {
-	        DispatchQueue(label: "VerifyContainerQueue").sync {
+	        DispatchQueue(label: "InOrderContainerQueue").sync {
 		        Self.mocks.append(mock)
 		        Self.calls.append(call)
 		        Self.functions.append(function)
